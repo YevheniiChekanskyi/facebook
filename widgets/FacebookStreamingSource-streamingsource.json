@@ -1,0 +1,286 @@
+{
+  "metadata": {
+    "spec-version": "1.0"
+  },
+  "configuration-groups": [
+    {
+      "label": "General",
+      "properties": [
+        {
+          "widget-type": "textbox",
+          "label": "Reference Name",
+          "name": "referenceName"
+        },
+        {
+          "widget-type": "textbox",
+          "label": "Access token",
+          "name": "accessToken"
+        }
+      ]
+    },
+    {
+      "label": "Object query parameters",
+      "properties": [
+        {
+          "name": "objectType",
+          "label": "Object Type",
+          "widget-type": "select",
+          "widget-attributes": {
+            "default": "Ad",
+            "values": [
+              "Campaign",
+              "Ad",
+              "Ad Set",
+              "Account"
+            ]
+          }
+        },
+        {
+          "name": "adId",
+          "label": "Ad Id",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "adSetId",
+          "label": "Ad Set Id",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "campaignId",
+          "label": "Campaign Id",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "accountId",
+          "label": "Account Id",
+          "widget-type": "textbox"
+        },
+        {
+          "label": "Level",
+          "name": "level",
+          "widget-type": "select",
+          "widget-attributes": {
+            "default": "default",
+            "values": [
+              "ad",
+              "adset",
+              "campaign",
+              "account",
+              "default"
+            ]
+          }
+        },
+        {
+          "name": "fields",
+          "label": "Fields",
+          "widget-type": "dsv",
+          "widget-attributes": {
+            "delimiter": ","
+          }
+        },
+        {
+          "name": "breakdown",
+          "label": "Breakdown",
+          "widget-type": "select",
+          "widget-attributes": {
+            "default": "none",
+            "values": [
+              "none",
+              "action_canvas_component_name",
+              "action_carousel_card_id",
+              "action_carousel_card_id, age",
+              "action_carousel_card_id, age, gender",
+              "action_carousel_card_id, country",
+              "action_carousel_card_id, gender",
+              "action_carousel_card_id, impression_device",
+              "action_carousel_card_name",
+              "action_carousel_card_name, age",
+              "action_carousel_card_name, age, gender",
+              "action_carousel_card_name, country",
+              "action_carousel_card_name, gender",
+              "action_carousel_card_name, impression_device",
+              "action_converted_product_id",
+              "action_destination",
+              "action_device *",
+              "action_device, impression_device *",
+              "action_device, publisher_platform *",
+              "action_device, publisher_platform, impression_device *",
+              "action_device, publisher_platform, platform_position *",
+              "action_device, publisher_platform, platform_position, impression_device *",
+              "action_reaction",
+              "action_target_id *",
+              "action_type *",
+              "action_type, action_converted_product_id",
+              "action_type, action_reaction",
+              "action_video_sound",
+              "action_video_type",
+              "ad_format_asset",
+              "age *",
+              "age, gender *",
+              "body_asset",
+              "call_to_action_asset",
+              "country *",
+              "description_asset",
+              "device_platform",
+              "dma",
+              "frequency_value",
+              "gender *",
+              "hourly_stats_aggregated_by_advertiser_time_zone *",
+              "hourly_stats_aggregated_by_audience_time_zone *",
+              "image_asset",
+              "impression_device",
+              "link_url_asset",
+              "place_page_id",
+              "platform_position",
+              "product_id *",
+              "publisher_platform *",
+              "publisher_platform, impression_device *",
+              "publisher_platform, platform_position *",
+              "publisher_platform, platform_position, impression_device *",
+              "region *",
+              "title_asset",
+              "video_asset"
+            ]
+          }
+        },
+        {
+          "name": "additionalBreakdown",
+          "label": "Additional Breakdown",
+          "widget-type": "select",
+          "widget-attributes": {
+            "default": "none",
+            "values": [
+              "none",
+              "action_type",
+              "action_target_id",
+              "action_destination",
+              "action_target_id"
+            ]
+          }
+        },
+        {
+          "name": "sorting",
+          "label": "Sorting",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "sortDirection",
+          "label": "Sort Direction",
+          "widget-type": "radio-group",
+          "widget-attributes": {
+            "layout": "inline",
+            "default": "ascending",
+            "options": [
+              {
+                "id": "ascending",
+                "label": "Ascending"
+              },
+              {
+                "id": "descending",
+                "label": "Descending"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "API limits",
+      "properties": [
+        {
+          "widget-type": "function-dropdown-with-alias",
+          "name": "filtering",
+          "label": "Filtering",
+          "widget-attributes": {
+            "placeholders": {
+              "field": "field",
+              "alias": "value"
+            },
+            "delimiter": "%!delim@%",
+            "dropdownOptions": [
+              "EQUAL",
+              "NOT_EQUAL",
+              "GREATER_THAN",
+              "GREATER_THAN_OR_EQUAL",
+              "LESS_THAN",
+              "LESS_THAN_OR_EQUAL",
+              "IN_RANGE",
+              "NOT_IN_RANGE",
+              "CONTAIN",
+              "NOT_CONTAIN",
+              "NOT_IN",
+              "STARTS_WITH",
+              "ANY",
+              "ALL",
+              "AFTER",
+              "BEFORE",
+              "NONE"
+            ]
+          }
+        },
+        {
+          "name": "timeRanges",
+          "label": "Time ranges",
+          "widget-type": "textbox"
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "widget-type": "non-editable-schema-editor",
+      "schema": {
+      }
+    }
+  ],
+  "filters": [
+    {
+      "name": "Campaign Id",
+      "condition": {
+        "expression": "objectType == 'Campaign'"
+      },
+      "show": [
+        {
+          "name": "campaignId",
+          "type": "property"
+        }
+      ]
+    },
+    {
+      "name": "Ad Id",
+      "condition": {
+        "expression": "objectType == 'Ad'"
+      },
+      "show": [
+        {
+          "name": "adId",
+          "type": "property"
+        }
+      ]
+    },
+    {
+      "name": "Ad Set Id",
+      "condition": {
+        "expression": "objectType == 'Ad Set'"
+      },
+      "show": [
+        {
+          "name": "adSetId",
+          "type": "property"
+        }
+      ]
+    },
+    {
+      "name": "Account Id",
+      "condition": {
+        "expression": "objectType == 'Account'"
+      },
+      "show": [
+        {
+          "name": "accountId",
+          "type": "property"
+        }
+      ]
+    }
+  ]
+}
