@@ -16,14 +16,25 @@
 
 package io.cdap.plugin.facebook.source.streaming;
 
+import io.cdap.cdap.api.annotation.Description;
+import io.cdap.cdap.api.annotation.Name;
 import io.cdap.plugin.facebook.source.common.config.BaseSourceConfig;
 
 /**
  * Provides all required configuration for reading Facebook Insights Streaming Source.
  */
 public class FacebookStreamingSourceConfig extends BaseSourceConfig {
+  public static final String PROPERTY_POLL_INTERVAL = "pollInterval";
+
+  @Name(PROPERTY_POLL_INTERVAL)
+  @Description("The amount of time to wait between each poll in minutes.")
+  private long pollInterval;
 
   public FacebookStreamingSourceConfig(String referenceName) {
     super(referenceName);
+  }
+
+  public long getPollInterval() {
+    return pollInterval;
   }
 }

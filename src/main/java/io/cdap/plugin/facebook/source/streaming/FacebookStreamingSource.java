@@ -28,8 +28,6 @@ import io.cdap.cdap.etl.api.streaming.StreamingSource;
 import io.cdap.plugin.common.Constants;
 import io.cdap.plugin.common.IdUtils;
 import org.apache.spark.streaming.api.java.JavaDStream;
-import scala.reflect.ClassTag;
-import scala.reflect.ClassTag$;
 
 /**
  * Plugin reads data from Facebook Insights Api periodically fetching fresh data.
@@ -56,10 +54,7 @@ public class FacebookStreamingSource extends StreamingSource<StructuredRecord> {
   @Override
   public JavaDStream<StructuredRecord> getStream(StreamingContext context) {
     validateConfiguration(context.getFailureCollector());
-
-    ClassTag<StructuredRecord> tag = ClassTag$.MODULE$.apply(StructuredRecord.class);
-    FacebookInputDStream dstream = new FacebookInputDStream(context.getSparkStreamingContext().ssc(), tag, config);
-    return JavaDStream.fromDStream(dstream, tag);
+    return context.getSparkStreamingContext().receiverStream(new FacebookReceiver(config));
   }
 
   private void validateConfiguration(FailureCollector failureCollector) {
